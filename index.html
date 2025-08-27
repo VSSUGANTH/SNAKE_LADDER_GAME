@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Friends‑Inspired Snake — PWA</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Friends-inspired snake game with obstacles, power-ups, and speed boosts. PWA ready." />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Friends‑Inspired Snake</h1>
+      <div class="controls">
+        <button id="startBtn">Start</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="muteBtn">Toggle Music</button>
+        <label class="touch-hint">Use arrow keys / swipe</label>
+      </div>
+    </header>
+
+    <main>
+      <canvas id="game"></canvas>
+      <aside id="hud">
+        <div>Score: <span id="score">0</span></div>
+        <div>High: <span id="high">0</span></div>
+        <div>Speed: <span id="speed">1x</span></div>
+        <div id="message" class="message">Press Start to play</div>
+      </aside>
+    </main>
+
+    <footer>
+      <small>Friends-inspired aesthetics only — no copyrighted assets used.</small>
+    </footer>
+  </div>
+
+  <audio id="bgm" loop preload="auto">
+    <source src="assets/background.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script src="app.js"></script>
+  <script>
+    // Register service worker for PWA offline functionality
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(function(err){
+        console.warn('SW registration failed:', err);
+      });
+    }
+  </script>
+</body>
+</html>
